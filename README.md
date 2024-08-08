@@ -9,9 +9,8 @@ php artisan model:list
 this will show all the models you got in the app
 
 
-```
+```PHP
 <?php
-// BY DANIEL GUEVARA 
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
