@@ -6,8 +6,16 @@ this code allow you to use
 ```
 php artisan model:list
 ```
+
 this will show all the models you got in the app
 
+FIRST -> create the command file with this tag
+
+```
+php artisan make:command ListModels
+```
+
+THEN COPY PASTE
 
 ```PHP
 <?php
