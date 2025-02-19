@@ -1,4 +1,4 @@
-# php artisan model:list
+# php artisan models:list
 ## laravel-list-models-command
 
 BY DANIEL GUEVARA 
