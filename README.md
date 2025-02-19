@@ -49,7 +49,6 @@ class listModelsCommand extends Command
             $number++;
         }
 
-        // Print footer
         $this->line(str_repeat('-', 40));
     }
 
