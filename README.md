@@ -20,6 +20,7 @@ THEN COPY PASTE
 
 ```PHP
 <?php
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
@@ -27,7 +28,7 @@ use Illuminate\Support\Facades\File;
 
 class listModelsCommand extends Command
 {
-    protected $signature = 'model:list';
+    protected $signature = 'models:list';
     protected $description = 'List all models in the application';
 
     public function handle()
@@ -39,32 +40,19 @@ class listModelsCommand extends Command
             return pathinfo($file)['filename'];
         }, $models);
 
-        // Determine the number of columns
-        $columns = 3;
-        $rows = array_chunk($modelNames, ceil(count($modelNames) / $columns));
+        $this->line(' -- THESE ARE THE MODELS INSIDE THE APP -- ');
+        $this->line(str_repeat('-', 40));
 
-        // Print the header
-        $this->line(' -- THIS ARE THE MODELS INSIDE THE APP -- ');
-        $this->line(str_repeat('-', 15) . '|' . str_repeat('-', 15) . '|' . str_repeat('-', 15));
-
-        // Print the model names in columns
-        foreach ($rows as $row) {
-            // Adjust each model name to have a fixed width
-            $formattedRow = array_map(function ($name) {
-                return str_pad($name, 20); // Adjust padding as necessary
-            }, $row);
-
-            // Ensure each row has three columns
-            while (count($formattedRow) < $columns) {
-                $formattedRow[] = ''; // Fill empty columns if necessary
-            }
-
-            $this->line(implode(' | ', $formattedRow));
+        $number = 1;
+        foreach ($modelNames as $modelName) {
+            $this->line('     ' . str_pad($number, 2, '0', STR_PAD_LEFT) . ' -> ' . "<fg=yellow>" . $modelName . "</>");
+            $number++;
         }
 
         // Print footer
-        $this->line(str_repeat('-', 15) . '|' . str_repeat('-', 15) . '|' . str_repeat('-', 15));
+        $this->line(str_repeat('-', 40));
     }
+
 }
 
 ```
